@@ -75,3 +75,16 @@ because it is expected by the system by default.
 ```
 NEO4J_AUTH=neo4j/<password>
 ```
+
+# Step 3: Starting Neo4j
+
+In order to start the Neo4j instance, it is sufficient to have this project on a dedicated and configured server on
+which the previous steps have been performed. To start the instance only the following command must be executed:
+
+```
+$ docker-compose up
+```
+
+Afterwards, the Neo4J instance can be reached via `https://<your-domain>:7473`. Likewise, a connection to the database
+itself can be set up directly via `Bolt+s (wss)` at `<your-domain>:7687`. This then allows direct queries and
+connections from other external clients can be established.
