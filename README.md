@@ -11,7 +11,7 @@ the project as close as possible to production mode on an external server.
 
 # Step 1: Receiving Certificates
 
-In the first step, the certificates must be created, which can later be used for encryption by Neo4J.. To do this,
+In the first step, the certificates must be created, which can later be used for encryption by Neo4J. To do this,
 Certbot must initially be created on the machine via Docker. If the latest version is already available, this step can
 be skipped. To create Certbot, the following command should be used:
 
@@ -43,8 +43,7 @@ the [HTTP-01 challenge](https://letsencrypt.org/de/docs/challenge-types/). This 
 create a small server inside the container named `certbot`. Since the container runs on a server and the ports must be
 opened by default from the container to the host, so that the container can be reached from outside, it is necessary to
 release port `80` with `-p "80:80"`. Furthermore, the created certificates are stored
-in `${PWD}/certificates/etc/letsencrypt` via `-v "${PWD}/certificates/etc/letsencrypt:
-/etc/letsencrypt"`. In order for Certbot to send information about the certificates to the requester, an email address
-is requested using `--email <your-email>`, in addition to the domain to certify `-d <your-domain>`. Overall, the
-conditions of Certbot are agreed to with `--agree-tos` and already existing certificates are overwritten
-with `--renew-by-default`.
+in `${PWD}/certificates/etc/letsencrypt` via `-v "${PWD}/certificates/etc/letsencrypt:/etc/letsencrypt"`. In order for
+Certbot to send information about the certificates to the requester, an email address is requested
+using `--email <your-email>`, in addition to the domain to certify `-d <your-domain>`. Overall, the conditions of
+Certbot are agreed to with `--agree-tos` and already existing certificates are overwritten with `--renew-by-default`.
