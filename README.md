@@ -25,7 +25,7 @@ parameters are explained below.
 ```
 $ docker run \
     -p "80:80" \
-    -v "${PWD}/certificates/etc/letsencrypt:/etc/letsencrypt" \
+    -v "${PWD}/neo4j/certificates/etc/letsencrypt:/etc/letsencrypt" \
     -it \
     --name certbot \
     --rm \
@@ -43,7 +43,35 @@ the [HTTP-01 challenge](https://letsencrypt.org/de/docs/challenge-types/). This 
 create a small server inside the container named `certbot`. Since the container runs on a server and the ports must be
 opened by default from the container to the host, so that the container can be reached from outside, it is necessary to
 release port `80` with `-p "80:80"`. Furthermore, the created certificates are stored
-in `${PWD}/certificates/etc/letsencrypt` via `-v "${PWD}/certificates/etc/letsencrypt:/etc/letsencrypt"`. In order for
-Certbot to send information about the certificates to the requester, an email address is requested
+in `${PWD}/neo4j/certificates/etc/letsencrypt` via `-v "${PWD}/neo4j/certificates/etc/letsencrypt:/etc/letsencrypt"`. In
+order for Certbot to send information about the certificates to the requester, an email address is requested
 using `--email <your-email>`, in addition to the domain to certify `-d <your-domain>`. Overall, the conditions of
 Certbot are agreed to with `--agree-tos` and already existing certificates are overwritten with `--renew-by-default`.
+
+# Step 2: Preparing Neo4j
+
+After the certificates have been successfully stored in `${PWD}/neo4j/certificates/etc/letsencrypt/live/<your-domain>/`
+in preparation for Neo4j the certified domain under which the instance should be reachable has to be specified in
+`neo4j.conf`. For this the occurrences of the `<your-domain>` must be changed according to the certified domain.
+
+Therefore, `neo4j.conf` must be modified along the following lines:
+
+```
+dbms.default_advertised_address=<your-domain>
+```
+
+```
+dbms.ssl.policy.bolt.base_directory=/var/lib/neo4j/certificates/etc/letsencrypt/live/<your-domain>/
+```
+
+```
+dbms.ssl.policy.https.base_directory=/var/lib/neo4j/certificates/etc/letsencrypt/live/<your-domain>/
+```
+
+Before Neo4j can finally be operated, the `.env.neo4j` file must be created in the top folder of this project. In
+`.env.neo4j` we will create the authentication by specifying `<password>`. Thereby the username neo4j cannot be changed,
+because it is expected by the system by default.
+
+```
+NEO4J_AUTH=neo4j/<password>
+```

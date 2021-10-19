@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  neo:
+    image: neo4j:latest
+    container_name: neo_db
+    ports:
+      - '7473:7473'
+      - '7687:7687'
+    volumes:
+      - ./neo4j/conf/:/var/lib/neo4j/conf/
+      - ./neo4j/certificates/:/var/lib/neo4j/certificates/
+    env_file:
+      - .env.neo4j
