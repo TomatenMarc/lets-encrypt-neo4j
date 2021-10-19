@@ -86,5 +86,5 @@ $ docker-compose up
 ```
 
 Afterwards, the Neo4J instance can be reached via `https://<your-domain>:7473`. Likewise, a connection to the database
-itself can be set up directly via `Bolt+s (wss)` at `<your-domain>:7687`. This then allows direct queries and
+itself can be set up directly via `Bolt+S (wss)` at `<your-domain>:7687`. This then allows direct queries and
 connections from other external clients can be established.
