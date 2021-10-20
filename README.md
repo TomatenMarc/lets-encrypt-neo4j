@@ -56,7 +56,7 @@ Certbot are agreed to with `--agree-tos` and already existing certificates are o
 
 After the certificates have been successfully stored in `${PWD}/neo4j/certificates/etc/letsencrypt/live/<your-domain>/`
 in preparation for Neo4j the certified domain under which the instance should be reachable has to be specified in
-`neo4j.conf`. For this the occurrences of the `<your-domain>` must be changed according to the certified domain.
+`neo4j.conf`. For this the occurrences of `<your-domain>` must be changed according to the certified domain.
 
 Therefore, `neo4j.conf` must be modified along the following lines:
 
@@ -73,7 +73,7 @@ dbms.ssl.policy.https.base_directory=/var/lib/neo4j/certificates/etc/letsencrypt
 ```
 
 Before Neo4j can finally be operated, the `.env.neo4j` file must be created in the top folder of this project. In
-`.env.neo4j` we will create the authentication by specifying `<password>`. Thereby the username neo4j cannot be changed,
+`.env.neo4j` we will create the authentication by specifying `<password>`. Thereby the username `neo4j` cannot be changed,
 because it is expected by the system by default.
 
 ```
@@ -91,14 +91,14 @@ $ docker-compose up
 
 Afterwards, the Neo4J instance can be reached via `https://<your-domain>:7473`. Likewise, a connection to the database
 itself can be set up directly via `Bolt+S (wss)` at `<your-domain>:7687`. This then allows direct queries and
-connections from other external clients can be established.
+connections from other external clients to be established.
 
 # Conclusion
 
-With this project it is possible to host your own Neo4j instance on an external server in only 3 simple steps and thus
+With this project it is possible to host your own Neo4j instance on an external server in only three simple steps and thus
 take the first step into the world of graph databases. All in all three important steps are needed to encrypt your Neo4j
 instance:
 
-1. Valid Let's Encrypt certificates for the own domain pointing to the server
+1. Valid Let's Encrypt certificates for your own domain pointing to your server
 2. A Neo4J configuration that uses these certificates for `HTTPS` and `Bolt+S (wss)` and enables authentication
 3. A Docker-Compose file with which the previous steps are properly injected into the Neo4j instance
