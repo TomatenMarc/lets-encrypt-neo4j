@@ -1,6 +1,7 @@
 # Let's Encrypt Neo4j
 [![License - MIT](https://img.shields.io/badge/License-MIT-2ea44f)](./LICENSE.md)
-
+[![Author-GIT](https://img.shields.io/static/v1?label=GitHub&message=Tomatenmarc&color=blue&logo=github)](https://github.com/Tomatenmarc)
+[![Author-TWITTER](https://img.shields.io/static/v1?label=Twitter&message=FegerMarc&color=blue&logo=twitter)](https://twitter.com/FegerMarc)
 
 Since it is always a good idea to encrypt your applications, but very few do, this project will deal with the encryption
 of [Neo4j](https://neo4j.com/) with [Let's Encrypt](https://letsencrypt.org/de/) certificates which are generated
