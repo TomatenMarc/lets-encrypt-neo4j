@@ -1,4 +1,5 @@
 # Let's Encrypt Neo4j
+
 [![License - MIT](https://img.shields.io/badge/License-MIT-2ea44f)](./LICENSE.md)
 [![Author-GIT](https://img.shields.io/static/v1?label=GitHub&message=Tomatenmarc&color=blue&logo=github)](https://github.com/Tomatenmarc)
 [![Author-TWITTER](https://img.shields.io/static/v1?label=Twitter&message=FegerMarc&color=blue&logo=twitter)](https://twitter.com/FegerMarc)
@@ -91,3 +92,13 @@ $ docker-compose up
 Afterwards, the Neo4J instance can be reached via `https://<your-domain>:7473`. Likewise, a connection to the database
 itself can be set up directly via `Bolt+S (wss)` at `<your-domain>:7687`. This then allows direct queries and
 connections from other external clients can be established.
+
+# Conclusion
+
+With this project it is possible to host your own Neo4j instance on an external server in only 3 simple steps and thus
+take the first step into the world of graph databases. All in all three important steps are needed to encrypt your Neo4j
+instance:
+
+1. Valid Let's Encrypt certificates for the own domain pointing to the server
+2. A Neo4J configuration that uses these certificates for `HTTPS` and `Bolt+S (wss)` and enables authentication
+3. A Docker-Compose file with which the previous steps are properly injected into the Neo4j instance
